@@ -2,7 +2,6 @@
 
 namespace Flooris\XelionClient\HttpClient;
 
-use App\Models\XelionApiCredential;
 use Flooris\XelionClient\XelionApi;
 use Flooris\XelionClient\Model\XelionApiAuthModel;
 use Flooris\XelionClient\Model\XelionApiCredentialsModel;

@@ -2,10 +2,7 @@
 
 namespace Flooris\XelionClient\ModelPaginator;
 
-use App\Models\XelionToken;
 use Illuminate\Support\Collection;
-use App\Models\XelionApiCredential;
-use Illuminate\Support\Facades\Crypt;
 use Flooris\XelionClient\XelionApi;
 use Flooris\XelionClient\Model\XelionApiUserModel;
 use Flooris\XelionClient\HttpClient\XelionApiConnector;

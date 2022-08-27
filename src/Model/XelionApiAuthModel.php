@@ -12,14 +12,12 @@ class XelionApiAuthModel
     public string $serverVersion;
     public string $buildNumber;
 
-    public function __construct(
-        private readonly array $item
-    )
+    public function __construct($item)
     {
         $this->authentication = $item['authentication'];
-        $this->validUntil     = Carbon::parse($item['validUntil']);
         $this->version        = $item['version'];
         $this->serverVersion  = $item['serverVersion'];
         $this->buildNumber    = $item['buildNumber'];
+        $this->validUntil     = Carbon::parse($item['validUntil']);
     }
 }

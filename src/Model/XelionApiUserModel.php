@@ -2,12 +2,8 @@
 
 namespace Flooris\XelionClient\Model;
 
-use App\Models\Organisation;
-
 class XelionApiUserModel extends XelionAbstractModel
 {
-    public Organisation $organisation;
-
     public string $objectId;
     public string $objectType;
     public string $userName;
