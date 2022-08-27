@@ -9,7 +9,7 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
-        "illuminate/support": "^9.26"
+        "illuminate/support": "^9.21"
     },
     "homepage": "https://flooris.nl",
     "license": "MIT",
