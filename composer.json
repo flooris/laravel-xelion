@@ -1,0 +1,31 @@
+{
+    "name": "flooris/laravel-xelion",
+    "description": "Laravel package for connecting to Xelion",
+    "keywords": [
+        "flooris",
+        "xelion",
+        "laravel"
+    ],
+    "require": {
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "illuminate/support": "^9.26"
+    },
+    "homepage": "https://flooris.nl",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Flooris\\XelionClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Florian Kwakkenbos",
+            "email": "f.kwakkenbos@flooris.nl",
+            "homepage": "https://flooris.nl",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
