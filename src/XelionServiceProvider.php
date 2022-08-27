@@ -3,16 +3,19 @@
 namespace Flooris\XelionClient;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class XelionServiceProvider extends ServiceProvider
+class XelionServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
+        $this->app->singleton(XelionService::class, function ($app) {
+            return new XelionService();
+        });
+    }
 
+    public function provides(): array
+    {
+        return [XelionService::class];
     }
 }

@@ -9,6 +9,8 @@ composer require flooris/laravel-xelion
 Get Xelion Users as a Collection
 
 ```php
+use Illuminate\Support\Facades\App;
+use Flooris\XelionClient\XelionService;
 use Flooris\XelionClient\Model\XelionApiCredentialsModel;
 use Flooris\XelionClient\HttpClient\XelionApiConnector;
 use Flooris\XelionClient\ModelPaginator\XelionUserPaginator;
@@ -29,15 +31,11 @@ $credentials = new XelionApiCredentialsModel(
   $token
 );
 
-$connector = new XelionApiConnector($credentials);
+/** @var XelionService $service */
+$service = App::make(XelionService::class);
 
-if ($connector->missingToken()) {
-  $authenticator = $connector->getAuthenticator();
-  $authModel = $authenticator->getAuthModel();
+$userCollection =  $service->connect($credentials)
+    ->userPaginator()
+    ->getAll();
 
-  $connector->setToken($authModel->authentication);
-}
-
-$userPaginator = new XelionUserPaginator($connector);
-$userCollection = $userPaginator->getAll();
 ```
