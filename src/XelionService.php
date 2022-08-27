@@ -44,6 +44,17 @@ class XelionService
         throw new XelionNotConnectedException();
     }
 
+    public function webSocketUrl(): string
+    {
+        if ($this->isConnected()) {
+            $client    = new XelionApi($this->connector());
+
+            return $client->webSocket()->getWebsocketUrl();
+        }
+
+        throw new XelionNotConnectedException();
+    }
+
     public function isConnected(): bool
     {
         if ($this->connector()) {
