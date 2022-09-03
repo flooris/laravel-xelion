@@ -5,6 +5,7 @@ namespace Flooris\XelionClient;
 use Flooris\XelionClient\Endpoint\XelionUserEndpoint;
 use Flooris\XelionClient\Endpoint\XelionAuthEndpoint;
 use Flooris\XelionClient\Endpoint\XelionWebsocketEndpoint;
+use Flooris\XelionClient\Endpoint\XelionPhoneLineEndpoint;
 use Flooris\XelionClient\HttpClient\XelionAbstractConnector;
 
 class XelionApi
@@ -28,6 +29,11 @@ class XelionApi
     public function user(): XelionUserEndpoint
     {
         return new XelionUserEndpoint($this);
+    }
+
+    public function phoneLine(): XelionPhoneLineEndpoint
+    {
+        return new XelionPhoneLineEndpoint($this);
     }
 
     public function webSocket(): XelionWebsocketEndpoint

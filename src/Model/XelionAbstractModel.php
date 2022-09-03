@@ -31,4 +31,19 @@ abstract class XelionAbstractModel
 
         return $defaultValue;
     }
+
+    public function getItemObjectChildValue(array $item, string $key, string $childKey, $defaultValue = null): mixed
+    {
+        if (! isset($item['object'])) {
+            return $defaultValue;
+        }
+
+        if (isset($item['object'][$key]) &&
+            isset($item['object'][$key][$childKey])
+        ) {
+            return $item['object'][$key][$childKey];
+        }
+
+        return $defaultValue;
+    }
 }

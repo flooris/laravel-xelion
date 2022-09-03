@@ -18,6 +18,7 @@ abstract class XelionAbstractConnector
     protected readonly string $baseUri;
     protected readonly string $version;
     protected readonly string $tenant;
+    private ?string $token = null;
 
     public function __construct(
         private readonly XelionApiCredentialsModel $credentials

@@ -6,11 +6,12 @@ use Illuminate\Support\Collection;
 use Flooris\XelionClient\XelionApi;
 use Flooris\XelionClient\Model\XelionApiUserModel;
 use Flooris\XelionClient\HttpClient\XelionApiConnector;
+use Flooris\XelionClient\Model\XelionApiPhoneLineModel;
 
-class XelionUserPaginator
+class XelionPhoneLinePaginator
 {
     protected XelionApi $client;
-    protected Collection $users;
+    protected Collection $phoneLines;
     protected int $currentPage = 1;
     protected ?int $lastObjectId = null;
 
@@ -19,8 +20,8 @@ class XelionUserPaginator
         private readonly int                $pageSize = 100,
     )
     {
-        $this->client = new XelionApi($this->connector);
-        $this->users  = collect();
+        $this->client     = new XelionApi($this->connector);
+        $this->phoneLines = collect();
     }
 
     public function getAll(bool $full = false): Collection
@@ -35,13 +36,13 @@ class XelionUserPaginator
 
             if (count($result['data'])) {
                 foreach ($result['data'] as $item) {
-                    $xelionApiUserModel = new XelionApiUserModel($item);
+                    $xelionApiPhoneLineModel = new XelionApiPhoneLineModel($item);
 
                     if ($full) {
-                        $xelionApiUserModel = $this->getItem($xelionApiUserModel->objectId);
+                        $xelionApiPhoneLineModel = $this->getItem($xelionApiPhoneLineModel->objectId);
                     }
 
-                    $this->users->push($xelionApiUserModel);
+                    $this->phoneLines->push($xelionApiPhoneLineModel);
                 }
 
                 $this->lastObjectId = $result['meta']['paging']['nextId'];
@@ -50,7 +51,7 @@ class XelionUserPaginator
             $this->currentPage++;
         }
 
-        return $this->users;
+        return $this->phoneLines;
     }
 
     public function getAllFull(): Collection
@@ -58,24 +59,24 @@ class XelionUserPaginator
         return $this->getAll(true);
     }
 
-    public function getItem(string $objectId): XelionApiUserModel
+    public function getItem(string $objectId): XelionApiPhoneLineModel
     {
         $response = $this->client
-            ->user()
-            ->getUserAsResponse($objectId);
+            ->phoneLine()
+            ->getPhoneLineAsResponse($objectId);
 
         $dataAsJson = $response->getBody()->getContents();
 
         $item = json_decode($dataAsJson, true);
 
-        return new XelionApiUserModel($item);
+        return new XelionApiPhoneLineModel($item);
     }
 
     private function getPageItems(): array
     {
         $response = $this->client
-            ->user()
-            ->getUsersAsResponse(
+            ->phoneLine()
+            ->getPhoneLinesAsResponse(
                 $this->pageSize,
                 $this->lastObjectId
             );
