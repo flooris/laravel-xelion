@@ -19,7 +19,7 @@ class XelionAuthEndpoint extends AbstractEndpoint
         return $this->getConnector()->post($this->getEndpointUri(), $postData);
     }
 
-    public function getEndpointUri(): string
+    public function getEndpointUri(?string $objectId = null): string
     {
         return self::ENDPOINT;
     }

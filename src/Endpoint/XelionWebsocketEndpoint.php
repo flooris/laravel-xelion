@@ -11,12 +11,17 @@ class XelionWebsocketEndpoint extends AbstractEndpoint
 
     public function getWebsocketUrl(): string
     {
-        $response = $this->getConnector()->post(self::ENDPOINT, null);
+        $response = $this->getConnector()->post($this->getEndpointUri(), null);
 
         $dataAsJson = $response->getBody()->getContents();
 
         $resultArray = json_decode($dataAsJson, true);
 
         return $resultArray['object'];
+    }
+
+    public function getEndpointUri(?string $objectId = null): string
+    {
+        return self::ENDPOINT;
     }
 }
