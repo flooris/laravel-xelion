@@ -7,6 +7,7 @@ use Flooris\XelionClient\Endpoint\XelionAuthEndpoint;
 use Flooris\XelionClient\Endpoint\XelionWebsocketEndpoint;
 use Flooris\XelionClient\Endpoint\XelionPhoneLineEndpoint;
 use Flooris\XelionClient\HttpClient\XelionAbstractConnector;
+use Flooris\XelionClient\Endpoint\XelionAddressableEndpoint;
 
 class XelionApi
 {
@@ -34,6 +35,11 @@ class XelionApi
     public function phoneLine(): XelionPhoneLineEndpoint
     {
         return new XelionPhoneLineEndpoint($this);
+    }
+
+    public function addressable(): XelionAddressableEndpoint
+    {
+        return new XelionAddressableEndpoint($this);
     }
 
     public function webSocket(): XelionWebsocketEndpoint

@@ -7,6 +7,7 @@ use Flooris\XelionClient\Model\XelionApiCredentialsModel;
 use Flooris\XelionClient\ModelPaginator\XelionUserPaginator;
 use Flooris\XelionClient\Exceptions\XelionNotConnectedException;
 use Flooris\XelionClient\ModelPaginator\XelionPhoneLinePaginator;
+use Flooris\XelionClient\ModelPaginator\XelionAddressablePaginator;
 
 class XelionService
 {
@@ -57,10 +58,22 @@ class XelionService
         throw new XelionNotConnectedException();
     }
 
+    /**
+     * @throws XelionNotConnectedException
+     */
+    public function addressablePaginator(): XelionAddressablePaginator
+    {
+        if ($this->isConnected()) {
+            return new XelionAddressablePaginator($this->connector());
+        }
+
+        throw new XelionNotConnectedException();
+    }
+
     public function webSocketUrl(): string
     {
         if ($this->isConnected()) {
-            $client    = new XelionApi($this->connector());
+            $client = new XelionApi($this->connector());
 
             return $client->webSocket()->getWebsocketUrl();
         }
