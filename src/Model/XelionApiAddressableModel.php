@@ -5,7 +5,7 @@ namespace Flooris\XelionClient\Model;
 class XelionApiAddressableModel extends XelionAbstractModel
 {
     public ?string $objectId;
-    public string $objectType;
+    public ?string $objectType;
     public ?string $address;
     public ?string $addressType;
     public int $orderNumber;
