@@ -9,7 +9,7 @@ class XelionApiAddressableModel extends XelionAbstractModel
     public ?string $address;
     public ?string $addressType;
     public int $orderNumber;
-    public string $name;
+    public ?string $name;
     public ?string $commonName;
     public ?string $addressObjectId;
     public int $addressLength;
